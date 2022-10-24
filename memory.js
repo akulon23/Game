@@ -58,7 +58,9 @@ function revealCard(nr) {
 
             }
             else {
-
+                setTimeout(function () {
+                    restore2Cards(nr, visibleNr)
+                }, 1000);
             }
 
             turnCounter++;
@@ -69,8 +71,20 @@ function revealCard(nr) {
 
 }
 
-function hide2Cards(nr1, nr2) {
+function hide2Cards(nr1, nr2) 
+{
     $('#c' + nr1).css('opacity', '0');
     $('#c' + nr2).css('opacity', '0');
 
+}
+
+function restore2Cards (nr1, nr2)
+{
+    $('#c' + nr1).css('background-image', 'url(img/karta.png)');
+    $('#c' + nr1).addClass('card');
+    $('#c' + nr1).removeClass('cardA');
+
+    $('#c' + nr2).css('background-image', 'url(img/karta.png)');
+    $('#c' + nr2).addClass('card');
+    $('#c' + nr2).removeClass('cardA');
 }
