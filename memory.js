@@ -32,10 +32,45 @@ c11.addEventListener("click", function () { revealCard(11) });
 
 var oneVisible = false;
 var turnCounter = 0;
+var visibleNr;
 
 function revealCard(nr) {
-    var image = "url(img/" + cards[nr] + ")";
-    $('#c' + nr).css('background-image', image);
-    $('#c' + nr).addClass('cardA');
-    $('#c' + nr).removeClass('cardA');
+    var opacityValue = $('#c' + nr).css('opacity');
+
+    if (opacityValue != 0) {
+        var image = "url(img/" + cards[nr] + ")";
+
+        $('#c' + nr).css('background-image', image);
+        $('#c' + nr).addClass('cardA');
+        $('#c' + nr).removeClass('cardA');
+
+        if (oneVisible == false) {
+            //first card
+            oneVisible = true;
+            visibleNr = nr;
+        }
+        else {
+            //second card
+            if (cards[visibleNr] == cards[nr]) {
+                setTimeout(function () {
+                    hide2Cards(nr, visibleNr)
+                }, 750);
+
+            }
+            else {
+
+            }
+
+            turnCounter++;
+            $('.score').html('Turn counter:' + turnCounter);
+            oneVisible = false;
+        }
+    }
+
+}
+
+function hide2Cards(nr1, nr2) {
+    $('#c' + nr1).css('opacity', '0');
+    $('#c' + nr2).css('opacity', '0');
+
 }
